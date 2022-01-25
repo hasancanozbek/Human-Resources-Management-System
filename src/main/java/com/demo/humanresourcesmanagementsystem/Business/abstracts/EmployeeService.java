@@ -2,12 +2,12 @@ package com.demo.humanresourcesmanagementsystem.Business.abstracts;
 
 import com.demo.humanresourcesmanagementsystem.Core.Utilities.Results.DataResult;
 import com.demo.humanresourcesmanagementsystem.Core.Utilities.Results.Result;
-import com.demo.humanresourcesmanagementsystem.Entities.concretes.Job;
+import com.demo.humanresourcesmanagementsystem.Entities.concretes.Employee;
 
 import java.util.List;
 
-public interface JobService {
-    DataResult<List<Job>> getAllJobs();
+public interface EmployeeService {
+    public Result addEmployee(Employee employee);
 
-    Result addJob(Job job);
+    public DataResult<List<Employee>> getAllEmployees();
 }
