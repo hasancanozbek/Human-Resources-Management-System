@@ -20,7 +20,7 @@ public class EmployeeController {
     }
 
     @PostMapping("/addEmployee")
-    public Result addEmployee(@RequestBody Employee employee) {
+    public Result addEmployee(@RequestBody Employee employee) throws Exception {
         return employeeService.addEmployee(employee);
     }
 

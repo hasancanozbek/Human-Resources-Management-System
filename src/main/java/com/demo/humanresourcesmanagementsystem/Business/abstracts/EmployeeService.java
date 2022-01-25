@@ -7,7 +7,7 @@ import com.demo.humanresourcesmanagementsystem.Entities.concretes.Employee;
 import java.util.List;
 
 public interface EmployeeService {
-    public Result addEmployee(Employee employee);
+    public Result addEmployee(Employee employee) throws Exception;
 
     public DataResult<List<Employee>> getAllEmployees();
 }
