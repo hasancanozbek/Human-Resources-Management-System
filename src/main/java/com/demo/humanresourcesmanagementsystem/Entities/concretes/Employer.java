@@ -1,11 +1,12 @@
 package com.demo.humanresourcesmanagementsystem.Entities.concretes;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.boot.context.properties.bind.DefaultValue;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "employers")
@@ -13,6 +14,7 @@ import javax.persistence.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @PrimaryKeyJoinColumn(name = "user_id", referencedColumnName = "id")
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler", "jobPostings"})
 public class Employer extends User {
 
     @Column(name = "company_name")
@@ -27,4 +29,6 @@ public class Employer extends User {
     @Column(name = "validation")
     private boolean validation;
 
+    @OneToMany(mappedBy = "employer")
+    private List<JobPosting> jobPostings;
 }

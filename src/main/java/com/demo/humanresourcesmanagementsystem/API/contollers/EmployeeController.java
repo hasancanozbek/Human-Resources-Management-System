@@ -4,6 +4,7 @@ import com.demo.humanresourcesmanagementsystem.Business.abstracts.EmployeeServic
 import com.demo.humanresourcesmanagementsystem.Core.Utilities.Results.DataResult;
 import com.demo.humanresourcesmanagementsystem.Core.Utilities.Results.Result;
 import com.demo.humanresourcesmanagementsystem.Entities.concretes.Employee;
+import com.demo.humanresourcesmanagementsystem.Entities.dtos.JobPostingDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -27,5 +28,19 @@ public class EmployeeController {
     @GetMapping("/getAllEmployees")
     public DataResult<List<Employee>> getAllEmployees() {
         return employeeService.getAllEmployees();
+    }
+
+    @GetMapping("/findByActiveJobPostings")
+    public DataResult<List<JobPostingDto>> findByActiveJobPostings() {
+        return employeeService.findByActiveJobPostings();
+    }
+
+    @GetMapping("/findByJobPostingsWithSorting")
+    public DataResult<List<JobPostingDto>> findByJobPostingsWithSorting() {
+        return employeeService.findByJobPostingsWithSorting();
+    }
+
+    public DataResult<List<JobPostingDto>> findByCompanyJobPostings(@RequestParam String companyName) {
+        return employeeService.findByCompanyJobPostings(companyName);
     }
 }
