@@ -26,4 +26,8 @@ public class Employee extends User {
 
     @Column(name = "year_of_birth")
     private int yearOfBirth;
+
+    @OneToOne
+    @JoinColumn(name = "cv_id", referencedColumnName = "id")
+    private CV cv;
 }

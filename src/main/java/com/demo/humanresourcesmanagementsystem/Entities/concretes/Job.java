@@ -25,4 +25,7 @@ public class Job {
 
     @OneToMany(mappedBy = "job")
     List<JobPosting> jobPostings;
+
+    @OneToMany(mappedBy = "job")
+    List<Work> works;
 }
