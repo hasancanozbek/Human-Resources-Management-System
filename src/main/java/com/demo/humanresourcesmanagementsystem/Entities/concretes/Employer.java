@@ -1,5 +1,6 @@
 package com.demo.humanresourcesmanagementsystem.Entities.concretes;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -29,6 +30,7 @@ public class Employer extends User {
     @Column(name = "validation")
     private boolean validation;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "employer")
     private List<JobPosting> jobPostings;
 }

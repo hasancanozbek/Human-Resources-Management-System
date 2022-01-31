@@ -1,5 +1,6 @@
 package com.demo.humanresourcesmanagementsystem.Entities.concretes;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -22,7 +23,8 @@ public class Technology {
     @Column(name = "technology")
     private String technology;
 
-    @ManyToMany(mappedBy = "technology")
+    @JsonIgnore
+    @OneToMany(mappedBy = "technology")
     private List<CV> cv;
 
 }

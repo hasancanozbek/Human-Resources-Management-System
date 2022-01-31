@@ -1,5 +1,6 @@
 package com.demo.humanresourcesmanagementsystem.Entities.concretes;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -36,6 +37,7 @@ public class Work {
     @DateTimeFormat(pattern = "yyyy-mm-dd")
     private LocalDate endDate;
 
-    @ManyToMany(mappedBy = "work")
+    @JsonIgnore
+    @OneToMany(mappedBy = "work")
     private List<CV> cv;
 }

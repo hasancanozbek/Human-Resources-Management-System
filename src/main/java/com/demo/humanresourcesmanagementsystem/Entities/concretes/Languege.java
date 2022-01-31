@@ -1,5 +1,6 @@
 package com.demo.humanresourcesmanagementsystem.Entities.concretes;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -25,6 +26,7 @@ public class Languege {
     @Column(name = "level")
     private int level;
 
-    @ManyToMany(mappedBy = "languege")
+    @JsonIgnore
+    @OneToMany(mappedBy = "languege")
     private List<CV> cv;
 }

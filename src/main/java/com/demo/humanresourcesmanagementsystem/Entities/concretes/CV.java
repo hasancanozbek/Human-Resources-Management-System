@@ -1,11 +1,11 @@
 package com.demo.humanresourcesmanagementsystem.Entities.concretes;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.util.List;
 
 @Entity
 @Table(name = "cvs")
@@ -19,21 +19,21 @@ public class CV {
     @Column(name = "id")
     private int id;
 
-    @ManyToMany
+    @ManyToOne
     @JoinColumn(name = "education_id", referencedColumnName = "id")
-    private List<Education> education;
+    private Education education;
 
-    @ManyToMany
+    @ManyToOne
     @JoinColumn(name = "work_id", referencedColumnName = "id")
-    private List<Work> work;
+    private Work work;
 
-    @ManyToMany
+    @ManyToOne
     @JoinColumn(name = "languege_id", referencedColumnName = "id")
-    private List<Languege> languege;
+    private Languege languege;
 
-    @ManyToMany
+    @ManyToOne
     @JoinColumn(name = "technology_id", referencedColumnName = "id")
-    private List<Technology> technology;
+    private Technology technology;
 
     @Column(name = "github")
     private String github;
@@ -47,6 +47,7 @@ public class CV {
     @Column(name = "photo")
     private String photo;
 
+    @JsonIgnore
     @OneToOne(mappedBy = "cv")
     private Employee employee;
 }

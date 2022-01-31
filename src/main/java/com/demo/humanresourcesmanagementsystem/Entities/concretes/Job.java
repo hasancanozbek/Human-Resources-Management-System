@@ -1,5 +1,6 @@
 package com.demo.humanresourcesmanagementsystem.Entities.concretes;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -23,9 +24,11 @@ public class Job {
     @Column(name = "job_name")
     private String jobName;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "job")
-    List<JobPosting> jobPostings;
+    private List<JobPosting> jobPostings;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "job")
-    List<Work> works;
+    private List<Work> works;
 }
