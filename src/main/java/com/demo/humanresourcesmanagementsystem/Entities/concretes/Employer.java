@@ -1,12 +1,13 @@
 package com.demo.humanresourcesmanagementsystem.Entities.concretes;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.util.List;
 
 @Entity
@@ -15,19 +16,24 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @PrimaryKeyJoinColumn(name = "user_id", referencedColumnName = "id")
-@JsonIgnoreProperties({"hibernateLazyInitializer", "handler", "jobPostings"})
 public class Employer extends User {
 
-    @Column(name = "company_name")
+    @NotBlank
+    @NotNull
+    @Column(name = "company_name", length = 128)
     private String companyName;
 
-    @Column(name = "company_website")
+    @NotBlank
+    @NotNull
+    @Column(name = "company_website", length = 128)
     private String companyWebsite;
 
-    @Column(name = "company_telephone")
+    @NotBlank
+    @NotNull
+    @Column(name = "company_telephone", length = 12)
     private String companyTelephone;
 
-    @Column(name = "validation")
+    @Column(name = "validation", columnDefinition = "boolean default false")
     private boolean validation;
 
     @JsonIgnore

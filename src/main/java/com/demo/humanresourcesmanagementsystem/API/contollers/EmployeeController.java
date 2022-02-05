@@ -8,12 +8,13 @@ import com.demo.humanresourcesmanagementsystem.Entities.dtos.JobPostingDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
 @RequestMapping("/api/employee")
 public class EmployeeController {
-    private EmployeeService employeeService;
+    private final EmployeeService employeeService;
 
     @Autowired
     public EmployeeController(EmployeeService employeeService) {
@@ -21,7 +22,7 @@ public class EmployeeController {
     }
 
     @PostMapping("/addEmployee")
-    public Result addEmployee(@RequestBody Employee employee) throws Exception {
+    public Result addEmployee(@Valid @RequestBody Employee employee) throws Exception {
         return employeeService.addEmployee(employee);
     }
 
@@ -40,6 +41,7 @@ public class EmployeeController {
         return employeeService.findByJobPostingsWithSorting();
     }
 
+    @GetMapping("/findByCompanyJobPostings")
     public DataResult<List<JobPostingDto>> findByCompanyJobPostings(@RequestParam String companyName) {
         return employeeService.findByCompanyJobPostings(companyName);
     }

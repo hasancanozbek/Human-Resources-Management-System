@@ -3,7 +3,6 @@ package com.demo.humanresourcesmanagementsystem.API.contollers;
 import com.demo.humanresourcesmanagementsystem.Business.abstracts.JobService;
 import com.demo.humanresourcesmanagementsystem.Core.Utilities.Results.DataResult;
 import com.demo.humanresourcesmanagementsystem.Core.Utilities.Results.Result;
-import com.demo.humanresourcesmanagementsystem.Core.Utilities.Results.SuccessResult;
 import com.demo.humanresourcesmanagementsystem.Entities.concretes.Job;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;

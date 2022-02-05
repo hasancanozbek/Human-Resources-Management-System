@@ -1,10 +1,14 @@
 package com.demo.humanresourcesmanagementsystem.Entities.concretes;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.PastOrPresent;
 
 @Data
 @AllArgsConstructor
@@ -15,19 +19,28 @@ import javax.persistence.*;
 @PrimaryKeyJoinColumn(name = "user_id", referencedColumnName = "id")
 public class Employee extends User {
 
-    @Column(name = "first_name")
+    @NotNull
+    @NotBlank
+    @Column(name = "first_name", length = 50)
     private String firstName;
 
-    @Column(name = "last_name")
+    @NotNull
+    @NotBlank
+    @Column(name = "last_name", length = 50)
     private String lastName;
 
-    @Column(name = "national_identity")
+    @NotNull
+    @NotBlank
+    @Column(name = "national_identity", length = 11)
     private String nationalIdentity;
 
+    @NotNull
+    @NotBlank
+    @PastOrPresent
     @Column(name = "year_of_birth")
     private int yearOfBirth;
 
-    @OneToOne
-    @JoinColumn(name = "cv_id", referencedColumnName = "id")
+    @JsonIgnore
+    @OneToOne(mappedBy = "employee")
     private CV cv;
 }

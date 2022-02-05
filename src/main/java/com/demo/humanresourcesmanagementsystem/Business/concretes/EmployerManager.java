@@ -18,9 +18,9 @@ import java.util.List;
 
 @Service
 public class EmployerManager implements EmployerService {
-    private EmployerRepository employerRepository;
-    private MailVerificationService mailVerificationService;
-    private JobPostingRepository jobPostingRepository;
+    private final EmployerRepository employerRepository;
+    private final MailVerificationService mailVerificationService;
+    private final JobPostingRepository jobPostingRepository;
 
     @Autowired
     public EmployerManager(EmployerRepository employerRepository, JobPostingRepository jobPostingRepository, @Qualifier("TestMailVerification") MailVerificationService mailVerificationService) {
@@ -31,7 +31,7 @@ public class EmployerManager implements EmployerService {
 
     @Override
     public Result addEmployer(Employer employer) {
-        if (MailRegex.ifValidMail(employer.getEmail()) && MailRegex.ifCompanyMail(employer) && mailVerificationService.isValidMail(employer.getEmail())) {
+        if (MailRegex.ifCompanyMail(employer) && mailVerificationService.isValidMail(employer.getEmail())) {
             employerRepository.save(employer);
             return new SuccessResult(employer.getCompanyName() + " added");
         } else {

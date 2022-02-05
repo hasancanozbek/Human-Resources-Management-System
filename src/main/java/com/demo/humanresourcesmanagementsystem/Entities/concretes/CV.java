@@ -1,17 +1,21 @@
 package com.demo.humanresourcesmanagementsystem.Entities.concretes;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import java.util.List;
 
 @Entity
 @Table(name = "cvs")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler", "educations", "works", "langueges", "technologies"})
 public class CV {
 
     @Id
@@ -19,21 +23,22 @@ public class CV {
     @Column(name = "id")
     private int id;
 
-    @ManyToOne
-    @JoinColumn(name = "education_id", referencedColumnName = "id")
-    private Education education;
+    //ToDo : Employee bilgilerinin görünmesi problemi giderilecek.
+    @OneToOne
+    @JoinColumn(name = "employee_id")
+    private Employee employee;
 
-    @ManyToOne
-    @JoinColumn(name = "work_id", referencedColumnName = "id")
-    private Work work;
+    @OneToMany(mappedBy = "cv", cascade = CascadeType.ALL, orphanRemoval = true)
+    List<Education> educations;
 
-    @ManyToOne
-    @JoinColumn(name = "languege_id", referencedColumnName = "id")
-    private Languege languege;
+    @OneToMany(mappedBy = "cv", cascade = CascadeType.ALL, orphanRemoval = true)
+    List<Work> works;
 
-    @ManyToOne
-    @JoinColumn(name = "technology_id", referencedColumnName = "id")
-    private Technology technology;
+    @OneToMany(mappedBy = "cv", cascade = CascadeType.ALL, orphanRemoval = true)
+    List<Languege> langueges;
+
+    @OneToMany(mappedBy = "cv", cascade = CascadeType.ALL, orphanRemoval = true)
+    List<Technology> technologies;
 
     @Column(name = "github")
     private String github;
@@ -41,13 +46,12 @@ public class CV {
     @Column(name = "linkedin")
     private String linkedin;
 
+    @NotNull
+    @NotBlank
     @Column(name = "cover_letter")
     private String coverLetter;
 
     @Column(name = "photo")
     private String photo;
 
-    @JsonIgnore
-    @OneToOne(mappedBy = "cv")
-    private Employee employee;
 }

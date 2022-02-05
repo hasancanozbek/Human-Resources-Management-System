@@ -9,12 +9,13 @@ import com.demo.humanresourcesmanagementsystem.Entities.dtos.JobPostingDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
 @RequestMapping("/api/employer")
 public class EmployerController {
-    private EmployerService employerService;
+    private final EmployerService employerService;
 
     @Autowired
     public EmployerController(EmployerService employerService) {
@@ -22,7 +23,7 @@ public class EmployerController {
     }
 
     @PostMapping("/addEmployer")
-    public Result addEmployer(@RequestBody Employer employer) {
+    public Result addEmployer(@Valid @RequestBody Employer employer) {
         return employerService.addEmployer(employer);
     }
 
@@ -32,7 +33,7 @@ public class EmployerController {
     }
 
     @PostMapping("/addJobPosting")
-    public Result addjobPosting(@RequestBody JobPosting jobPosting) {
+    public Result addjobPosting(@Valid @RequestBody JobPosting jobPosting) {
         return employerService.addJobPosting(jobPosting);
     }
 

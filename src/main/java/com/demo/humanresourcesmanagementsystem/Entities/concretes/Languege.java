@@ -1,15 +1,17 @@
 package com.demo.humanresourcesmanagementsystem.Entities.concretes;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.util.List;
+import javax.validation.constraints.DecimalMax;
+import javax.validation.constraints.DecimalMin;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 @Entity
-@Table(name = "langueges")
+@Table(name = "cv_langueges")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -20,13 +22,20 @@ public class Languege {
     @Column(name = "id")
     private int id;
 
+    @ManyToOne
+    @JoinColumn(name = "cv_id")
+    private CV cv;
+
+    @NotBlank
+    @NotNull
     @Column(name = "languege")
     private String languege;
 
+    @NotNull
+    @NotBlank
+    @DecimalMin(value = "1")
+    @DecimalMax(value = "5")
     @Column(name = "level")
     private int level;
 
-    @JsonIgnore
-    @OneToMany(mappedBy = "languege")
-    private List<CV> cv;
 }
