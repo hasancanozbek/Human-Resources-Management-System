@@ -1,6 +1,7 @@
 package com.demo.humanresourcesmanagementsystem.Business.concretes;
 
 import com.demo.humanresourcesmanagementsystem.Business.abstracts.CvService;
+import com.demo.humanresourcesmanagementsystem.Core.CloudRepo.CloudService;
 import com.demo.humanresourcesmanagementsystem.Core.Utilities.Results.DataResult;
 import com.demo.humanresourcesmanagementsystem.Core.Utilities.Results.Result;
 import com.demo.humanresourcesmanagementsystem.Core.Utilities.Results.SuccessDataResult;
@@ -23,16 +24,18 @@ public class CvManager implements CvService {
     private final WorkRepository workRepository;
     private final LanguegeRepository languegeRepository;
     private final TechnologyRepository technologyRepository;
+    private final CloudService cloudService;
 
     @Autowired
     public CvManager(CvRepository cvRepository, EducationRepository educationRepository,
                      WorkRepository workRepository, LanguegeRepository languegeRepository,
-                     TechnologyRepository technologyRepository) {
+                     TechnologyRepository technologyRepository, CloudService cloudService) {
         this.cvRepository = cvRepository;
         this.educationRepository = educationRepository;
         this.workRepository = workRepository;
         this.languegeRepository = languegeRepository;
         this.technologyRepository = technologyRepository;
+        this.cloudService = cloudService;
     }
 
     @Override
@@ -99,5 +102,20 @@ public class CvManager implements CvService {
     public DataResult<List<WorkDto>> findAllByWorkId(int id) {
         return new SuccessDataResult<List<WorkDto>>("Work information listed",
                 workRepository.findAllByWorkId(id, Sort.by(Sort.Direction.DESC, "endDate")));
+    }
+
+    //ToDo : Hatalar giderilecek
+    @Override
+    public DataResult<String> uploadPhoto(int id, String file) {
+        String secure_url = this.cloudService.upload(file).get("secure_url").toString();
+        CV cv = this.cvRepository.findById(id).get();
+        cv.setPhoto(secure_url);
+        this.cvRepository.save(cv);
+        return new SuccessDataResult<String>("Photo upload successfully.", secure_url);
+    }
+
+    @Override
+    public DataResult<CV> findByEmployeeId(int employeeId) {
+        return new SuccessDataResult<CV>("Cv is listed for entered id", cvRepository.findByEmployeeId(employeeId));
     }
 }

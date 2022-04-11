@@ -33,4 +33,5 @@ public class User {
     @Column(name = "password")
     private String password;
 
+    //ToDo : Json ignore sorunları giderilecek. Password ve şifre alanları gizlenecek.
 }

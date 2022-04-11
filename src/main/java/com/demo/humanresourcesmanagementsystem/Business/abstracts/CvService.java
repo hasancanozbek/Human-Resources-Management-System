@@ -31,4 +31,11 @@ public interface CvService {
     DataResult<Work> findByWorkId(int id);
 
     DataResult<List<WorkDto>> findAllByWorkId(int id);
+
+    //ToDo : Hatalar giderilecek.
+    DataResult<String> uploadPhoto(int id, String file);
+
+    DataResult<CV> findByEmployeeId(int employeeId);
+
+
 }

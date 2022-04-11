@@ -1,6 +1,6 @@
 package com.demo.humanresourcesmanagementsystem.Entities.concretes;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -15,7 +15,6 @@ import java.util.List;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@JsonIgnoreProperties({"hibernateLazyInitializer", "handler", "educations", "works", "langueges", "technologies"})
 public class CV {
 
     @Id
@@ -23,20 +22,24 @@ public class CV {
     @Column(name = "id")
     private int id;
 
-    //ToDo : Employee bilgilerinin görünmesi problemi giderilecek.
+    //Todo : Jackson Ignore sorunu düzeltilecek
     @OneToOne
     @JoinColumn(name = "employee_id")
     private Employee employee;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "cv", cascade = CascadeType.ALL, orphanRemoval = true)
     List<Education> educations;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "cv", cascade = CascadeType.ALL, orphanRemoval = true)
     List<Work> works;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "cv", cascade = CascadeType.ALL, orphanRemoval = true)
     List<Languege> langueges;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "cv", cascade = CascadeType.ALL, orphanRemoval = true)
     List<Technology> technologies;
 

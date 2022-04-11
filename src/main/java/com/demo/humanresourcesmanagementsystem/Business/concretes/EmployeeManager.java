@@ -24,7 +24,7 @@ public class EmployeeManager implements EmployeeService {
     private final JobPostingRepository jobPostingRepository;
 
     @Autowired
-    public EmployeeManager(EmployeeRepository employeeRepository, JobPostingRepository jobPostingRepository, @Qualifier("TestMailVerification") MailVerificationService mailVerificationService, @Qualifier("TestValidate") PersonValidationService personValidationService) {
+    public EmployeeManager(EmployeeRepository employeeRepository, JobPostingRepository jobPostingRepository, @Qualifier("TestMailVerification") MailVerificationService mailVerificationService, @Qualifier("MernisAdapter") PersonValidationService personValidationService) {
         this.employeeRepository = employeeRepository;
         this.mailVerificationService = mailVerificationService;
         this.personValidationService = personValidationService;

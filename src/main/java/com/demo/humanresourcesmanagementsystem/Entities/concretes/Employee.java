@@ -8,7 +8,6 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.PastOrPresent;
 
 @Data
 @AllArgsConstructor
@@ -35,8 +34,6 @@ public class Employee extends User {
     private String nationalIdentity;
 
     @NotNull
-    @NotBlank
-    @PastOrPresent
     @Column(name = "year_of_birth")
     private int yearOfBirth;
 

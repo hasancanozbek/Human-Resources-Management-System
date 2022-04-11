@@ -7,6 +7,7 @@ import com.demo.humanresourcesmanagementsystem.Entities.concretes.*;
 import com.demo.humanresourcesmanagementsystem.Entities.dtos.EducationDto;
 import com.demo.humanresourcesmanagementsystem.Entities.dtos.WorkDto;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -77,4 +78,15 @@ public class CvController {
         return cvService.findAllByWorkId(id);
     }
 
+    //ToDo : Hatalar giderilecek
+    @PostMapping("/uploadPhoto")
+    public ResponseEntity<?> uploadPhoto(@RequestParam(name = "id") int id,
+                                         @RequestParam String file) {
+        return ResponseEntity.ok(this.cvService.uploadPhoto(id, file));
+    }
+
+    @GetMapping("/findByEmployeeId")
+    public DataResult<CV> findByEmployeeId(@RequestParam int employeeId) {
+        return cvService.findByEmployeeId(employeeId);
+    }
 }

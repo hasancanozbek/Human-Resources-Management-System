@@ -1,5 +1,6 @@
 package com.demo.humanresourcesmanagementsystem.Entities.concretes;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -43,6 +44,7 @@ public class Work {
     @DateTimeFormat(pattern = "yyyy-mm-dd")
     private LocalDate endDate;
 
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "cv_id")
     private CV cv;
