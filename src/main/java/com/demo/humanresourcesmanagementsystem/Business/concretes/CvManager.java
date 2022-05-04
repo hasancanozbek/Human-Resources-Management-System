@@ -7,13 +7,16 @@ import com.demo.humanresourcesmanagementsystem.Core.Utilities.Results.Result;
 import com.demo.humanresourcesmanagementsystem.Core.Utilities.Results.SuccessDataResult;
 import com.demo.humanresourcesmanagementsystem.Core.Utilities.Results.SuccessResult;
 import com.demo.humanresourcesmanagementsystem.DataAccess.abstracts.*;
-import com.demo.humanresourcesmanagementsystem.Entities.concretes.*;
+import com.demo.humanresourcesmanagementsystem.Entities.concretes.CV;
+import com.demo.humanresourcesmanagementsystem.Entities.concretes.Education;
+import com.demo.humanresourcesmanagementsystem.Entities.concretes.Work;
 import com.demo.humanresourcesmanagementsystem.Entities.dtos.EducationDto;
 import com.demo.humanresourcesmanagementsystem.Entities.dtos.WorkDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Service
@@ -39,34 +42,39 @@ public class CvManager implements CvService {
     }
 
     @Override
-    public Result addCV(CV cv) {
-        cvRepository.save(cv);
+    public Result addCV(String github, String linkedin, String coverLetter, String photo, int employeeId) {
+        cvRepository.addCV(github, linkedin, coverLetter, photo, employeeId);
         return new SuccessResult("CV added.");
     }
 
+
     @Override
-    public Result addEducationInfo(Education education) {
-        educationRepository.save(education);
+    public Result addEducationInfo(String schoolName, String department, LocalDate startingDate, LocalDate graduationDate, int cvId) {
+        educationRepository.addEducationInfo(schoolName, department, startingDate, graduationDate, cvId);
         return new SuccessResult("Education information added to cv");
     }
 
+
     @Override
-    public Result addWorkInfo(Work work) {
-        workRepository.save(work);
+    public Result addWorkInfo(String workplace, int jobId, LocalDate startingDate, LocalDate endDate, int cvId) {
+        workRepository.addWorkInformation(workplace, jobId, startingDate, endDate, cvId);
         return new SuccessResult("Work information added to cv");
     }
 
+
     @Override
-    public Result addLanguegeInfo(Languege languege) {
-        languegeRepository.save(languege);
+    public Result addLanguegeInfo(int cvId, String languege, int level) {
+        languegeRepository.addLanguegeInfo(cvId, languege, level);
         return new SuccessResult("Languege information added to cv");
     }
 
+
     @Override
-    public Result addTechnologyInfo(Technology technology) {
-        technologyRepository.save(technology);
+    public Result addTechnologyInfo(String technology, int cvId) {
+        technologyRepository.addTechnologyInfo(technology, cvId);
         return new SuccessResult("Technology information added to cv");
     }
+
 
     @Override
     public DataResult<List<Education>> findAllByOrderByGraduationDateDesc() {
@@ -74,11 +82,13 @@ public class CvManager implements CvService {
                 educationRepository.findAllByOrderByGraduationDateDesc());
     }
 
+
     @Override
     public DataResult<Education> findByEducationId(int id) {
         return new SuccessDataResult<Education>("Education information listed",
                 educationRepository.findById(id));
     }
+
 
     @Override
     public DataResult<List<EducationDto>> findAllByEducationId(int id) {
@@ -86,11 +96,13 @@ public class CvManager implements CvService {
                 educationRepository.findAllByEducationId(id, Sort.by(Sort.Direction.DESC, "graduationDate")));
     }
 
+
     @Override
     public DataResult<List<Work>> findAllByOrderByEndDateDesc() {
         return new SuccessDataResult<List<Work>>("Work information listed",
                 workRepository.findAllByOrderByEndDateDesc());
     }
+
 
     @Override
     public DataResult<Work> findByWorkId(int id) {
@@ -98,24 +110,27 @@ public class CvManager implements CvService {
                 workRepository.findById(id));
     }
 
+
     @Override
     public DataResult<List<WorkDto>> findAllByWorkId(int id) {
         return new SuccessDataResult<List<WorkDto>>("Work information listed",
                 workRepository.findAllByWorkId(id, Sort.by(Sort.Direction.DESC, "endDate")));
     }
 
-    //ToDo : Hatalar giderilecek
+
     @Override
     public DataResult<String> uploadPhoto(int id, String file) {
         String secure_url = this.cloudService.upload(file).get("secure_url").toString();
         CV cv = this.cvRepository.findById(id).get();
         cv.setPhoto(secure_url);
         this.cvRepository.save(cv);
-        return new SuccessDataResult<String>("Photo upload successfully.", secure_url);
+        return new SuccessDataResult<String>("Photo upload successfully", secure_url);
     }
 
+
     @Override
-    public DataResult<CV> findByEmployeeId(int employeeId) {
-        return new SuccessDataResult<CV>("Cv is listed for entered id", cvRepository.findByEmployeeId(employeeId));
+    public DataResult<List<CV>> findCVByEmployeeId(int employeeId) {
+        return new SuccessDataResult<List<CV>>("Cv is listed for entered id", cvRepository.findCVByEmployeeId(employeeId));
     }
+
 }

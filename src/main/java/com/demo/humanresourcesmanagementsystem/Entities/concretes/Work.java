@@ -1,14 +1,13 @@
 package com.demo.humanresourcesmanagementsystem.Entities.concretes;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.PastOrPresent;
 import java.time.LocalDate;
 
@@ -17,6 +16,7 @@ import java.time.LocalDate;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler", "cv"})
 public class Work {
 
     @Id
@@ -24,8 +24,6 @@ public class Work {
     @Column(name = "id")
     private int id;
 
-    @NotBlank
-    @NotNull
     @Column(name = "workplace")
     private String workplace;
 
@@ -33,18 +31,16 @@ public class Work {
     @JoinColumn(name = "job_id", referencedColumnName = "id")
     private Job job;
 
-    @NotBlank
-    @NotNull
     @PastOrPresent
     @Column(name = "starting_date")
     @DateTimeFormat(pattern = "yyyy-mm-dd")
     private LocalDate startingDate;
 
+    @Value("string value")
     @Column(name = "end_date")
     @DateTimeFormat(pattern = "yyyy-mm-dd")
     private LocalDate endDate;
 
-    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "cv_id")
     private CV cv;

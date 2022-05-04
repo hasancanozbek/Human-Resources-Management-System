@@ -17,6 +17,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+@CrossOrigin
 @RestController
 @RequestMapping("/api/employee")
 public class EmployeeController {
@@ -27,27 +28,27 @@ public class EmployeeController {
         this.employeeService = employeeService;
     }
 
-    @PostMapping("/addEmployee")
+    @PostMapping("/addEmployee")//Test edildi
     public Result addEmployee(@Valid @RequestBody Employee employee) throws Exception {
         return employeeService.addEmployee(employee);
     }
 
-    @GetMapping("/getAllEmployees")
+    @GetMapping("/getAllEmployees")//Test edildi
     public DataResult<List<Employee>> getAllEmployees() {
         return employeeService.getAllEmployees();
     }
 
-    @GetMapping("/findByActiveJobPostings")
+    @GetMapping("/findByActiveJobPostings")//Test edildi
     public DataResult<List<JobPostingDto>> findByActiveJobPostings() {
         return employeeService.findByActiveJobPostings();
     }
 
-    @GetMapping("/findByJobPostingsWithSorting")
+    @GetMapping("/findByJobPostingsWithSorting")//Test edildi
     public DataResult<List<JobPostingDto>> findByJobPostingsWithSorting() {
         return employeeService.findByJobPostingsWithSorting();
     }
 
-    @GetMapping("/findByCompanyJobPostings")
+    @GetMapping("/findByCompanyJobPostings")//Test edildi
     public DataResult<List<JobPostingDto>> findByCompanyJobPostings(@RequestParam String companyName) {
         return employeeService.findByCompanyJobPostings(companyName);
     }

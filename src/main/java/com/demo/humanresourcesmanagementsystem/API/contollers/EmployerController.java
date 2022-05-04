@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.util.List;
 
+@CrossOrigin
 @RestController
 @RequestMapping("/api/employer")
 public class EmployerController {
@@ -22,37 +23,37 @@ public class EmployerController {
         this.employerService = employerService;
     }
 
-    @PostMapping("/addEmployer")
+    @PostMapping("/addEmployer")//Test edildi
     public Result addEmployer(@Valid @RequestBody Employer employer) {
         return employerService.addEmployer(employer);
     }
 
-    @GetMapping("/getAllEmployers")
+    @PostMapping("/addJobPosting")//Test edildi
+    public Result addjobPosting(@RequestBody JobPosting jobPosting) {
+        return employerService.addJobPosting(jobPosting);
+    }
+
+    @GetMapping("/getAllEmployers")//Test edildi
     public DataResult<List<Employer>> getAllEmployers() {
         return employerService.getAllEmployers();
     }
 
-    @PostMapping("/addJobPosting")
-    public Result addjobPosting(@Valid @RequestBody JobPosting jobPosting) {
-        return employerService.addJobPosting(jobPosting);
-    }
-
-    @GetMapping("/findByActiveJobPostings")
+    @GetMapping("/findByActiveJobPostings")//Test edildi
     public DataResult<List<JobPostingDto>> findByActiveJobPostings() {
         return employerService.findByActiveJobPostings();
     }
 
-    @GetMapping("/findByJobPostingsWithSorting")
+    @GetMapping("/findByJobPostingsWithSorting")//Test edildi
     public DataResult<List<JobPostingDto>> findByJobPostingsWithSorting() {
         return employerService.findByJobPostingsWithSorting();
     }
 
-    @GetMapping("/findByCompanyJobPostings")
+    @GetMapping("/findByCompanyJobPostings")//Test edildi
     public DataResult<List<JobPostingDto>> findByCompanyJobPostings(@RequestParam String companyName) {
         return employerService.findByCompanyJobPostings(companyName);
     }
 
-    @GetMapping("/passiveJobPosting")
+    @GetMapping("/passiveJobPosting")//Test edildi
     public Result passiveJobPosting(@RequestParam int id) {
         return employerService.passiveJobPosting(id);
     }

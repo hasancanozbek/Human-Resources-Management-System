@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import java.util.List;
 
 @Data
 @AllArgsConstructor
@@ -38,6 +39,6 @@ public class Employee extends User {
     private int yearOfBirth;
 
     @JsonIgnore
-    @OneToOne(mappedBy = "employee")
-    private CV cv;
+    @OneToMany(mappedBy = "employee")
+    private List<CV> cv;
 }

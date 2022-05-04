@@ -11,10 +11,11 @@ public interface EmployerService extends JobPostingService {
 
     Result addEmployer(Employer employer);
 
-    DataResult<List<Employer>> getAllEmployers();
-
     Result addJobPosting(JobPosting jobPosting);
 
+    DataResult<List<Employer>> getAllEmployers();
+
     Result passiveJobPosting(int id);
+
 
 }

@@ -1,6 +1,6 @@
 package com.demo.humanresourcesmanagementsystem.Entities.concretes;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -17,6 +17,7 @@ import java.time.LocalDate;
 @NoArgsConstructor
 @Entity
 @Table(name = "cv_educations")
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler", "cv"})
 public class Education {
 
     @Id
@@ -46,7 +47,6 @@ public class Education {
     @DateTimeFormat(pattern = "yyyy-mm-dd")
     private LocalDate graduationDate;
 
-    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "cv_id")
     private CV cv;

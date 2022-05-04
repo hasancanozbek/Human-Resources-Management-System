@@ -9,22 +9,23 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@CrossOrigin
 @RestController
 @RequestMapping("/api/jobs")
 public class JobController {
-    private JobService jobService;
+    private final JobService jobService;
 
     @Autowired
     public JobController(JobService jobService) {
         this.jobService = jobService;
     }
 
-    @PostMapping("/addJob")
+    @PostMapping("/addJob")//Test edildi
     public Result addJob(@RequestBody Job job) {
         return jobService.addJob(job);
     }
 
-    @GetMapping("/getAllJobs")
+    @GetMapping("/getAllJobs") //Test Edildi
     public DataResult<List<Job>> getAllJobs() {
         return jobService.getAllJobs();
     }

@@ -1,13 +1,10 @@
 package com.demo.humanresourcesmanagementsystem.Entities.concretes;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
 import java.util.List;
 
 @Entity
@@ -22,25 +19,20 @@ public class CV {
     @Column(name = "id")
     private int id;
 
-    //Todo : Jackson Ignore sorunu düzeltilecek
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "employee_id")
     private Employee employee;
 
-    @JsonIgnore
-    @OneToMany(mappedBy = "cv", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "cv", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
     List<Education> educations;
 
-    @JsonIgnore
-    @OneToMany(mappedBy = "cv", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "cv", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
     List<Work> works;
 
-    @JsonIgnore
-    @OneToMany(mappedBy = "cv", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "cv", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
     List<Languege> langueges;
 
-    @JsonIgnore
-    @OneToMany(mappedBy = "cv", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "cv", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
     List<Technology> technologies;
 
     @Column(name = "github")
@@ -49,8 +41,6 @@ public class CV {
     @Column(name = "linkedin")
     private String linkedin;
 
-    @NotNull
-    @NotBlank
     @Column(name = "cover_letter")
     private String coverLetter;
 
