@@ -13,6 +13,5 @@ public class HumanResourcesManagementSystemApplication {
         SpringApplication.run(HumanResourcesManagementSystemApplication.class, args);
     }
 
-    //ToDo : Mernis entegrasyonu yapılacak.
     //ToDo : Fotoğraf yükleme servisi entegrasyonu eklenecek.
 }

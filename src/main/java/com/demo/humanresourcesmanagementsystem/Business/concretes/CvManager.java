@@ -1,7 +1,6 @@
 package com.demo.humanresourcesmanagementsystem.Business.concretes;
 
 import com.demo.humanresourcesmanagementsystem.Business.abstracts.CvService;
-import com.demo.humanresourcesmanagementsystem.Core.CloudRepo.CloudService;
 import com.demo.humanresourcesmanagementsystem.Core.Utilities.Results.DataResult;
 import com.demo.humanresourcesmanagementsystem.Core.Utilities.Results.Result;
 import com.demo.humanresourcesmanagementsystem.Core.Utilities.Results.SuccessDataResult;
@@ -27,18 +26,17 @@ public class CvManager implements CvService {
     private final WorkRepository workRepository;
     private final LanguegeRepository languegeRepository;
     private final TechnologyRepository technologyRepository;
-    private final CloudService cloudService;
+
 
     @Autowired
     public CvManager(CvRepository cvRepository, EducationRepository educationRepository,
                      WorkRepository workRepository, LanguegeRepository languegeRepository,
-                     TechnologyRepository technologyRepository, CloudService cloudService) {
+                     TechnologyRepository technologyRepository) {
         this.cvRepository = cvRepository;
         this.educationRepository = educationRepository;
         this.workRepository = workRepository;
         this.languegeRepository = languegeRepository;
         this.technologyRepository = technologyRepository;
-        this.cloudService = cloudService;
     }
 
     @Override
@@ -119,18 +117,9 @@ public class CvManager implements CvService {
 
 
     @Override
-    public DataResult<String> uploadPhoto(int id, String file) {
-        String secure_url = this.cloudService.upload(file).get("secure_url").toString();
-        CV cv = this.cvRepository.findById(id).get();
-        cv.setPhoto(secure_url);
-        this.cvRepository.save(cv);
-        return new SuccessDataResult<String>("Photo upload successfully", secure_url);
-    }
-
-
-    @Override
     public DataResult<List<CV>> findCVByEmployeeId(int employeeId) {
         return new SuccessDataResult<List<CV>>("Cv is listed for entered id", cvRepository.findCVByEmployeeId(employeeId));
     }
+
 
 }
