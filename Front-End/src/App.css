@@ -1,0 +1,9 @@
+.App {
+  text-align: center;
+  background-color: rgb(41, 100, 109);
+
+}
+
+.ui.mycontainer.container {
+  margin: 2em;
+}
