@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { Link, NavLink } from 'react-router-dom'
 import { Container, Menu } from 'semantic-ui-react'
 import SignedIn from './SignedIn'
 import SignedOut from './SignedOut'
@@ -16,10 +17,11 @@ export default function Navi() {
         <div>
             <Menu size='large' inverted >
                 <Container>
-                    <Menu.Item>İletişim</Menu.Item>
-                    <Menu.Item>Hakkımızda</Menu.Item>
-                    <Menu.Item>Şirketler</Menu.Item>
-                    <Menu.Item>İş İlanları</Menu.Item>
+                    <Menu.Item as={NavLink} to="/">Ana Sayfa</Menu.Item>
+                    <Menu.Item as={NavLink} to="/contact">İletişim</Menu.Item>
+                    <Menu.Item as={NavLink} to="/aboutus">Hakkımızda</Menu.Item>
+                    <Menu.Item as={NavLink} to='/employers'>Şirketler</Menu.Item>
+                    <Menu.Item as={Link} to='/jobpostings'>İş İlanları</Menu.Item>
                     <Menu.Menu position='right'>
                         <Menu.Item>
                             {isAuthenticated ? <SignedIn signOut={handleSignOut} /> : <SignedOut signIn={handleSignIn} />}

@@ -1,7 +1,10 @@
 import React from 'react'
+import { Button } from 'semantic-ui-react'
 
 export default function FirstPage() {
     return (
-        <div></div>
+        <div>
+            <Button>Ana Sayfa</Button>
+        </div>
     )
 }
