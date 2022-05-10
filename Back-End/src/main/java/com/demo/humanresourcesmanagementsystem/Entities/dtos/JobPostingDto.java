@@ -11,6 +11,7 @@ import java.time.LocalDate;
 @NoArgsConstructor
 public class JobPostingDto {
 
+    private int id;
     private String companyName;
     private String jobName;
     private int openPositions;

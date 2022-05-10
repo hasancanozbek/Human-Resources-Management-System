@@ -11,17 +11,17 @@ import java.util.List;
 public interface JobPostingRepository extends JpaRepository<JobPosting, Integer> {
 
     @Query("Select new com.demo.humanresourcesmanagementsystem.Entities.dtos.JobPostingDto" +
-            "(employer.companyName, job.jobName, j.openPositions, j.releaseDate, j.applicationDeadline) From JobPosting j " +
+            "(j.id ,employer.companyName, job.jobName, j.openPositions, j.releaseDate, j.applicationDeadline) From JobPosting j " +
             "Inner Join j.employer employer Inner Join j.job job Where j.active=true")
     List<JobPostingDto> findByActiveJobPostings();
 
     @Query("Select new com.demo.humanresourcesmanagementsystem.Entities.dtos.JobPostingDto" +
-            "(employer.companyName, job.jobName, j.openPositions, j.releaseDate, j.applicationDeadline) From JobPosting j " +
+            "(j.id ,employer.companyName, job.jobName, j.openPositions, j.releaseDate, j.applicationDeadline) From JobPosting j " +
             "Inner Join j.employer employer Inner Join j.job job Where j.active=true")
     List<JobPostingDto> findByJobPostingsWithSorting(Sort sort);
 
     @Query("Select new com.demo.humanresourcesmanagementsystem.Entities.dtos.JobPostingDto" +
-            "(employer.companyName, job.jobName, j.openPositions, j.releaseDate, j.applicationDeadline) From JobPosting j " +
+            "(j.id ,employer.companyName, job.jobName, j.openPositions, j.releaseDate, j.applicationDeadline) From JobPosting j " +
             "Inner Join j.employer employer Inner Join j.job job Where j.employer.companyName =:companyName And j.active = true")
     List<JobPostingDto> findByCompanyJobPostings(String companyName);
 
