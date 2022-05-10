@@ -1,7 +1,7 @@
 import React from 'react'
 import { Button, Icon } from 'semantic-ui-react'
 
-export default function SignedOut(props) {
+export default function SignedOut({ signIn }) {
     return (
         <div>
             <Button primary icon>
@@ -9,7 +9,7 @@ export default function SignedOut(props) {
                 Kayıt Ol
             </Button>
 
-            <Button onClick={props.signIn} color='green' icon>
+            <Button onClick={signIn} color='green' icon>
                 <Icon name='sign in' />
                 Giriş Yap
             </Button>
