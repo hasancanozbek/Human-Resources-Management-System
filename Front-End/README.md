@@ -1,70 +1,36 @@
-# Getting Started with Create React App
+# Human-Resources-Management-System
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## FRONTEND İSTERLERİ
 
-## Available Scripts
+## :pushpin: Req 14 : İş verenler, iş ilanı paylaşırken işin yerinde veya uzaktan çalışma türlerinden hangisine uygun olduğunu seçilir kutudan girebilmelidir.
 
-In the project directory, you can run:
+## :pushpin: Req 15 : İş verenler işin çalışma zamanı özelliğini seçilir kutudan girebilmelidir. (Örneğin : Yarı Zamanlı, tam zamanlı...)
 
-### `npm start`
+## :pushpin: Req 16 : İş verenler tarafından girilen iş ilanları Hrms personeli tarafından onaylandığında yayına geçmelidir.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## :pushpin: Req 17 : Formik kullanarak formlarınızın tasarımını oluşturunuz. Backend'e bağlayınız (Araştırma ve uygulama) https://formik.org/
+<br>
+Aşağıdaki gereksinimlerin hem backend hem de frontend kodunu yazınız.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## :pushpin: Req 18 : Adaylar CV'lerini güncelleyebilmelidir.
 
-### `npm test`
+## :pushpin: Req 19: İş verenler şirket bilgilerini güncelleyebilmelidir. (Challange gereksinim:))
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Kabul Kriterleri :
 
-### `npm run build`
+:white_check_mark:Güncellemenin aktifleşmesi için HRMS personelinin onayı gerekmektedir.
+<br>
+:white_check_mark:Güncellemeler HRMS personeli onayladıktan sonra aktifleşecektir.
+<br>
+:white_check_mark:HRMS personeli güncelleyene kadar eski bilgiler görünecektir.
+<br>
+:white_check_mark:HRMS personeli onaylayana kadar, işveren şirket bilgilerini görüntülediğinde eski bilgiler görünmeli ve "güncelleme için onay bekleniyor" mesajı görüntülenmelidir.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## :pushpin: Req 20: HRMS personeli bilgilerini güncelleyebilmelidir.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## :pushpin: Req 21: Adaylar ilanları favorilerine ekleyebilmelidir.
 
-### `npm run eject`
+## :pushpin: Req 22: Adaylar ilanları lokasyon, çalışma türü (yarı zamanlı vb) seçeneklerine göre filtreleyebilmelidir.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## :pushpin: Req 23: İlanlar listelendiğinde default onarlı sayfalama olmalıdır. Kullanıcılar sayfa adedini 10-20-50-100 şeklinde değiştirebilmelidir.
