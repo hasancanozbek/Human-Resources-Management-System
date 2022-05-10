@@ -9,7 +9,7 @@
 ## :pushpin: Req 16 : İş verenler tarafından girilen iş ilanları Hrms personeli tarafından onaylandığında yayına geçmelidir.
 
 ## :pushpin: Req 17 : Formik kullanarak formlarınızın tasarımını oluşturunuz. Backend'e bağlayınız (Araştırma ve uygulama) https://formik.org/
-<br>
+<br> 
 # :large_blue_diamond: Aşağıdaki gereksinimlerin hem backend hem de frontend kodunu yazınız.
 
 ## :pushpin: Req 18 : Adaylar CV'lerini güncelleyebilmelidir.

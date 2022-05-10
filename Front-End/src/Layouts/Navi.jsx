@@ -1,7 +1,17 @@
-import React from 'react'
-import { Button, Container, Dropdown, Icon, Menu } from 'semantic-ui-react'
+import React, { useState } from 'react'
+import { Container, Menu } from 'semantic-ui-react'
+import SignedIn from './SignedIn'
+import SignedOut from './SignedOut'
 
 export default function Navi() {
+    const [isAuthenticated, setIsAuthenticated] = useState(false)
+
+    function handleSignOut() {
+        setIsAuthenticated(false)
+    }
+    function handleSignIn() {
+        setIsAuthenticated(true)
+    }
     return (
         <div>
             <Menu size='large' inverted >
@@ -12,31 +22,8 @@ export default function Navi() {
                     <Menu.Item>İş İlanları</Menu.Item>
                     <Menu.Menu position='right'>
                         <Menu.Item>
-                            <Button primary icon>
-                                <Icon name='signup' />
-                                Kayıt Ol</Button>
+                            {isAuthenticated ? <SignedIn signOut={handleSignOut} /> : <SignedOut signIn={handleSignIn} />}
                         </Menu.Item>
-                        <Menu.Item>
-                            <Button color='green' icon>
-                                <Icon name='sign in' />
-                                Giriş Yap</Button>
-                        </Menu.Item>
-                        <Dropdown item text='Profilim' icon={'user'} pointing='top right' >
-                            <Dropdown.Menu>
-                                <Dropdown.Item icon>
-                                    <Icon name='info' />
-                                    Bilgilerim
-                                </Dropdown.Item>
-                                <Dropdown.Item icon>
-                                    <Icon name='star' />
-                                    Favori Listem
-                                </Dropdown.Item>
-                                <Dropdown.Item icon>
-                                    <Icon name='sign out' />
-                                    Çıkış Yap
-                                </Dropdown.Item>
-                            </Dropdown.Menu>
-                        </Dropdown>
                     </Menu.Menu>
                 </Container>
             </Menu>
